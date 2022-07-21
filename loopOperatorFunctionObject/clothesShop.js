@@ -58,7 +58,7 @@ const basket = [
 
 function addGoodsInBasket(goods, basket) {
     const name = prompt('What item would you like to add to your basket?: ')
-    const amount = prompt('How many item do you need?: ')
+    const amount = parseInt(prompt('How many item do you need?: '))
 
 
 
@@ -84,14 +84,17 @@ function totalInfo(basket) {
     
         for (let i in basket) {
             totalSumm = totalSumm + basket[i].price * basket[i].amount;
-            totalAmount++;
+            totalAmount = totalAmount + basket[i].amount;
         }
         alert('You have '+ totalAmount +' items');
         alert('You need to pay '+ totalSumm);
     } else if (basket.length == 0) {
         alert('Your basket is empty!');
     }
-    return totalAmount, totalSumm;
+    return {
+        'totalAmount': totalAmount,
+        'totalSumm': totalSumm,
+    };
 }
 
 
@@ -137,5 +140,7 @@ while (true) {
         totalInfo(basket);
     } else if (answer === 'help') {
         getHelpMenu();
-    }
+    } else {
+        alert('Wrong command! Try again!');
+    };
 }
